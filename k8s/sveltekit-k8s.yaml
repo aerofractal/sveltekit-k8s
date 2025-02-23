@@ -33,7 +33,7 @@ metadata:
   namespace: sveltekit-k8s
 spec:
   selector:
-    app: nodejs
+    app: sveltekit-k8s
   ports:
     - name: http
       port: 80
