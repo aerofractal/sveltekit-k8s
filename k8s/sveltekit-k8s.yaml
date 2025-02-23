@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: sveltekit-k8s
-          image: aerofractal/sveltekit-k8s
+          image: aerofractal/sveltekit-k8s:latest
           ports:
             - containerPort: 3000
 ---
