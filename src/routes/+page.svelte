@@ -1,4 +1,4 @@
-<div class="dark:bg-gray-900">
+<div class="dark:bg-gray-700">
 	<div class="px-4 sm:px-0">
 		<h3 class="text-base/7 font-semibold text-gray-900 dark:text-white">Applicant Information</h3>
 		<p class="mt-1 max-w-2xl text-sm/6 text-gray-500 dark:text-gray-100">
