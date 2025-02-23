@@ -5,7 +5,9 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build --minify",
+		"build:local": "vite build --minify",
+		"build:dev": "docker build . -t aerofractal/sveltekit-k8s:latest-dev",
+		"build:prod": "docker build . -t aerofractal/sveltekit-k8s:latest",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
