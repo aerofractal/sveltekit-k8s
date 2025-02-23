@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: sveltekit-k8s
-          image: aerofractal/nodejs-test-1
+          image: aerofractal/sveltekit-k8s
           ports:
             - containerPort: 3000
 ---
