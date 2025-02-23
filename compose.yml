@@ -1,0 +1,9 @@
+---
+services:
+  nodejs-test-1:
+    container_name: nodejs-test-1
+    build: .
+    image: nodejs-test-1
+    ports:
+    - "3000:3000"
+    restart: unless-stopped

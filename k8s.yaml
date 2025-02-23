@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-test-1-deployment
+  namespace: sveltekit
+  labels:
+    app: nodejs
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+        - name: nodejs-test-1
+          image: aerofractal/nodejs-test-1
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-test-1-service
+  namespace: sveltekit
+spec:
+  selector:
+    app: nodejs
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nodejs-test-1-certificate
+  namespace: sveltekit
+spec:
+  secretName: nodejs-test-1-secret
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - svelte.lab.rdmusic.net
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nodejs-test-1-ingress
+  namespace: sveltekit
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`svelte.lab.rdmusic.net`)
+      kind: Rule
+      services:
+        - name: nodejs-test-1-service
+          port: 80
+  tls:
+    secretName: nodejs-test-1-secret
